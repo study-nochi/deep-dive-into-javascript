@@ -286,3 +286,87 @@ bindFunc1(5, 6, 7, 8) // {x: 1} 5 6 7 8
 var bindFunc2 = func.bind({ x: 1 }, 4, 5);
 bindFunc2(6, 7) // {x: 1} 4 5 6 7
 bindFunc2(8, 8) // {x: 1} 4 5 8 8
+
+//* 3-26 bind 메서드 - name 프로퍼티
+var func = function (a, b, c, d) {
+  console.log(this, a, b, c, d)
+}
+
+var bindFunc = func.bind({ x: 1 }, 4, 5);
+console.log(func.name); // func
+console.log(bindFunc.name); // bound func
+
+//* 3-27 내부함수에 this 전달 - call vs. bind
+
+var obj = {
+  outer: function () {
+    console.log(this);
+    var innerFunc = function () {
+      console.log(this);
+    }
+    innerFunc.call(this);
+  }
+}
+obj.outer()
+
+
+var obj = {
+  outer: function () {
+    console.log(this);
+    var innerFunc = function () {
+      console.log(this);
+    }.bind(this)
+    innerFunc();
+  }
+}
+
+obj.outer()
+
+//* 3-28 bind 메서드 - 내부함수에 this 전달
+
+var obj = {
+  logThis: function () {
+    console.log(this);
+  },
+  logThisLater1: function () {
+    setTimeout(this.logThis, 500);
+  },
+  logThisLater2: function () {
+    setTimeout(this.logThis.bind(this), 1000)
+  }
+}
+
+obj.logThisLater1() // Window 
+obj.logThisLater2() // {logThis: ƒ, logThisLater1: ƒ, logThisLater2: ƒ}
+
+//* 3-29 화살표 함수 내부에서의 this
+var obj = {
+  outer: function () {
+    console.log(this); // {outer: ƒ}
+    var innerFunc = () => {
+      console.log(this); //{outer: ƒ}
+    };
+    innerFunc()
+  }
+}
+obj.outer()
+
+//* 3-30 thisArg를 받는 경우 예시 - forEach 메서드
+var report = {
+  sum: 0,
+  count: 0,
+  add: function () {
+    var args = Array.prototype.slice.call(arguments);
+    args.forEach(function (entry) {
+      this.sum += entry;
+      ++this.count;
+    }, this);
+  },
+  average: function () {
+    return this.sum / this.count;
+  }
+};
+
+report.add(60, 85, 95);
+console.log(report.sum, report.count, report.average()); // 240 3 80
+
