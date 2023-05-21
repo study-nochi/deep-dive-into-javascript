@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "module": "src/index.js",
   "scripts": {
     "start": "webpack serve --open",
     "server":"node server.js",

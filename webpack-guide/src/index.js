@@ -1,21 +1,20 @@
-// import Print from './print'
 import _ from 'lodash'
+import numRef from '/ref.json';
 
-function component() {
-  // return import('lodash').then(({ default: _ }) => {
-  // const element = document.createElement('div');
-
-  // element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  // return element;
-  // }).catch((error) => 'An error occurred while loading the component');
-
-  const element = document.createElement('div');
-
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  // element.onclick = Print.bind(this, 'Hello webpack');
-
-  return element;
+export function numToWord(num) {
+  return _.reduce(
+    numRef, (accum, ref) => {
+      return ref.num === num ? ref.word : accum
+    },
+    ''
+  )
 }
 
-document.body.appendChild(component());
+export function wordToNum(word) {
+  return _.reduce(
+    numRef, (accum, ref) => {
+      return ref.word === word && word.toLowerCase() ? ref.num : accum
+    },
+    -1
+  );
+}
