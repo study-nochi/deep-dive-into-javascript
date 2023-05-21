@@ -5,16 +5,28 @@ module.exports = {
   mode: 'development',
   entry: {
     index: "./src/index.js",
-    another: "./src/another-modules.js",
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Caching",
+    })
+  ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true
+    clean: true,
   },
   optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     },
   },
 };

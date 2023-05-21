@@ -6,9 +6,9 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
-(self["webpackChunkwebpack_guide"] = self["webpackChunkwebpack_guide"] || []).push([["vendors-node_modules_lodash_lodash_js"],{
+(self["webpackChunkwebpack_guide"] = self["webpackChunkwebpack_guide"] || []).push([["vendors"],{
 
-/***/ "./node_modules/lodash/lodash.js":
+/***/ 486:
 /*!***************************************!*\
   !*** ./node_modules/lodash/lodash.js ***!
   \***************************************/
