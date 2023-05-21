@@ -10,3 +10,5 @@
 ## input -> process -> output
 
 
+
+- [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin)
