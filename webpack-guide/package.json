@@ -1,0 +1,23 @@
+{
+  "name": "webpack-guide",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.4",
+    "csv-loader": "^3.0.5",
+    "json5": "^2.2.3",
+    "style-loader": "^3.3.3",
+    "toml": "^3.0.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1",
+    "xml-loader": "^1.2.1",
+    "yamljs": "^0.3.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
